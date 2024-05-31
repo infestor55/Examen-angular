@@ -1,0 +1,23 @@
+<p>Form Control</p>
+
+
+<p>Form Groupe</p>
+<form [formGroup]="loginForm">
+    <label>Nom d'utilisateur</label>
+    <input type="text" formControlName="login" class="form-control">
+
+    <div class="alert alert-danger" *ngIf="loginForm.controls['login'].invalid && loginForm.controls['login'].touched">
+        <div *ngIf="loginForm.controls['login'].hasError('required')">login est obligatoire </div>
+        <div *ngIf="loginForm.controls['login'].hasError('minlength')">login doit etre superieur à 3 caractere</div>
+    </div>
+
+    <label>Mot de passe</label>
+    <input type="text" formControlName="pwd" class="form-control">
+    <div class="alert alert-danger" *ngIf="loginForm.controls['pwd'].invalid && loginForm.controls['pwd'].touched">
+        <div *ngIf="loginForm.controls['pwd'].hasError('required')">pwd est obligatoire</div>
+        <div *ngIf="loginForm.controls['pwd'].hasError('minlength')">pwd doit etre superieur à 6 caractere</div>
+        <div *ngIf="loginForm.controls['pwd'].hasError('pattern')">pwd doit etre majuscule</div>
+    </div>
+    <input type="submit" value="Se connecter" (click)="navigateTo()" [disabled]="loginForm.invalid" class="btn btn-info">
+
+</form>
